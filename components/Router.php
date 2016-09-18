@@ -25,7 +25,6 @@ class Router
 		// find uri in routes.php
 		foreach($this->routes as $uriPattern => $path) {
 			//echo "<br/>$uriPattern => $path";
-			
 			if(preg_match("~$uriPattern~", $uri)) {
 				$internalRoute = preg_replace("~$uriPattern~", $path, $uri);
 			
