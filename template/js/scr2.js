@@ -1,0 +1,1 @@
+(function() {			var nextvar = 'sadsadsds';		alert(nextvar);		console.log(nextvar);		var boboo = true;		alert(boboo);})();

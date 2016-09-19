@@ -184,3 +184,5 @@ pip-log.txt
 /public/images/landingpages/*
 /tests/log/*
 /template/bower_components/
+/.sass-cache/
+/node_modules/
