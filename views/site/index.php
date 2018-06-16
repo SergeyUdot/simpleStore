@@ -14,9 +14,9 @@
   <?php foreach($latestProducts as $product) { ?>
   <div class="product-short">
     <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" />
-	<h2><a href="/catalog/<?php echo $product['category_slug']; ?>/<?php echo $product['slug'].'-'.$product['id']; ?>"><?php echo $product['name']; ?></a></h2>
+	<h2><a href="/catalog/<?php echo $product['category_slug']; ?>/<?php echo $product['slug'].'-'.$product['id']; ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
 	<div class="prod-price">$<?php echo $product['price']; ?></div>
-	<a href="#">To Cart</a>
+	<a href="#" class="tocart-button">To Cart</a>
 	<?php if($product['is_new']) { ?>
 		<span class="prod-new">NEW!</span>
 	<?php } ?>

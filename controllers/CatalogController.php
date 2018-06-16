@@ -1,8 +1,5 @@
 <?php
 
-include_once ROOT.'/models/Category.php';
-include_once ROOT.'/models/Product.php';
-
 class CatalogController
 {
 	public function actionIndex() 
@@ -20,7 +17,7 @@ class CatalogController
 		return true;
 	}
 	
-	public function actionCategory($category)
+	public function actionCategory($category, $page = 1)
 	{
 		if($category) {
 			
@@ -28,9 +25,14 @@ class CatalogController
 			$categories = Category::getCategoriesList();
 			
 			$categoryProducts = array();
-			$categoryProducts = Product::getProductsListByCategory($category);
+			$categoryProducts = Product::getProductsListByCategory($category, $page);
 			
 			$metaTitle = isset($categoryProducts[0]['category_name']) ? $categoryProducts[0]['category_name'] : 'Products';
+			
+			$total = Product::getTotalProductsInCategory($category);
+			
+			// Creating of the object for the pagination
+			$pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT, 'page-');
 			
 			require_once(ROOT.'/views/catalog/category.php');
 			

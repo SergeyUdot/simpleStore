@@ -3,7 +3,7 @@
 class Product
 {
 	
-	const SHOW_BY_DEFAULT = 10;
+	const SHOW_BY_DEFAULT = 8;
 	
 	/**
 	 * Returns an array of products
@@ -43,9 +43,12 @@ class Product
 	/**
 	 * Returns an array of products for category
 	 */
-	public static function getProductsListByCategory($category = false)
+	public static function getProductsListByCategory($category = false, $page = 1)
 	{
 		if($category) {
+			$page = intval($page);
+			$offset = ($page - 1) * self::SHOW_BY_DEFAULT;
+			
 			$db = Db::getConnection();
 		
 			$products = array();
@@ -58,7 +61,8 @@ class Product
 			$result = $db->query("SELECT id, name, slug, price, old_price, image, is_new, is_promo FROM product "
 			        . "WHERE status='1' AND category_id='".$categoryRow['id']."' "
 					. "ORDER BY id DESC "
-					. "LIMIT ".self::SHOW_BY_DEFAULT);
+					. "LIMIT ".self::SHOW_BY_DEFAULT
+					. " OFFSET ". $offset);
 		
 			$i = 0;
 			while($row = $result->fetch()) {
@@ -96,10 +100,33 @@ class Product
 		}	
 	}
 	
+	/**
+	 * Returns total amount of products for category
+	 */
+	public static function getTotalProductsInCategory($category)
+	{
+		$category_id = Product::getCategoryIdBySlug($category)['id'];
+		$db = Db::getConnection();
+		
+		$result = $db->query('SELECT count(id) AS count FROM product WHERE status="1" AND `category_id`="'.$category_id.'"');
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+		$row = $result->fetch();
+		
+		return $row['count'];
+	}
+	
 	private static function getCategoryNameById($category_id)
 	{
 		$db = Db::getConnection();
 		$catRes = $db->query('SELECT name,slug FROM product_category WHERE `id`="'.$category_id.'"');
+		$catResIt = $catRes->fetch();
+		return $catResIt;
+	}
+	
+	private static function getCategoryIdBySlug($category)
+	{
+		$db = Db::getConnection();
+		$catRes = $db->query('SELECT id,name FROM product_category WHERE `slug`="'.$category.'"');
 		$catResIt = $catRes->fetch();
 		return $catResIt;
 	}

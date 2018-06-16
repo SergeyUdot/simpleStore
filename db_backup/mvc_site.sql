@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июн 16 2018 г., 20:36
+-- Время создания: Июн 17 2018 г., 00:15
 -- Версия сервера: 10.1.16-MariaDB
 -- Версия PHP: 5.6.24
 
@@ -101,7 +101,8 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`id`, `name`, `slug`, `category_id`, `code`, `price`, `availability`, `brand`, `image`, `description`, `old_price`, `is_new`, `is_recommended`, `is_promo`, `status`) VALUES
 (1, 'Рубашка тестовая 1', 'test-shirt-one', 1, 1001, 10.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'sdkjfndsfj kf dfn skfns fnsf kndjf', 0, 0, 0, 0, 1),
 (2, 'Рубашка тестовая другая', 'test-shirt-two', 1, 1002, 20.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 1, 0, 0, 1),
-(3, 'Футболка тестовая один', 'test-tshirt-one', 2, 2001, 20.25, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 0, 0, 0, 1);
+(3, 'Футболка тестовая один', 'test-tshirt-one', 2, 2001, 20.25, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 0, 0, 0, 1),
+(4, 'Футболочка', 'tshirt-two', 2, 2002, 10.95, 100, 'Froot of the Loom', 'https://picsum.photos/150/150?image=0', 'fsdfdsf sdfsd ', NULL, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,8 @@ CREATE TABLE `product_category` (
 INSERT INTO `product_category` (`id`, `name`, `slug`, `sort_order`, `status`, `description`) VALUES
 (1, 'Рубашки', 'shirts', 0, 1, ''),
 (2, 'Футболки', 't-shirts', 0, 1, ''),
-(3, 'Джинсы', 'jeans', 0, 1, '');
+(3, 'Джинсы', 'jeans', 0, 1, ''),
+(4, 'Регланы', 'reglan', 0, 1, 'sdfdf sdfffsf');
 
 --
 -- Индексы сохранённых таблиц
@@ -173,12 +175,12 @@ ALTER TABLE `news_category`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT для таблицы `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
