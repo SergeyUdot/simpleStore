@@ -1,1 +1,1 @@
-<?phpreturn array(	'news/([a-z]+)/([a-z-]+)-([0-9]+)' => 'news/view/$1/$2-$3',	'news/([a-z-]+)' => 'news/category/$1',	'news' => 'news/index',	'products' => 'product/list');
+<?phpreturn array(	'news/([a-z-]+)/([a-z-]+)-([0-9]+)' => 'news/view/$1/$2-$3',	'news/([a-z-]+)' => 'news/category/$1',	'news' => 'news/index',	'catalog/([a-z-]+)/([a-z-]+)-([0-9]+)' => 'catalog/view/$1/$2-$3',	'catalog/([a-z-]+)' => 'catalog/category/$1',	'catalog' => 'catalog/index',	'' => 'site/index');

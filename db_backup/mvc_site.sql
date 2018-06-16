@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Июн 16 2018 г., 14:19
--- Версия сервера: 5.5.16
--- Версия PHP: 5.3.8
+-- Хост: 127.0.0.1
+-- Время создания: Июн 16 2018 г., 20:36
+-- Версия сервера: 10.1.16-MariaDB
+-- Версия PHP: 5.6.24
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- База данных: `mvc_site`
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Структура таблицы `news`
 --
 
-CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `short_content` text NOT NULL,
@@ -36,9 +36,8 @@ CREATE TABLE IF NOT EXISTS `news` (
   `author_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `preview` varchar(255) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  `status` int(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `news`
@@ -56,13 +55,12 @@ INSERT INTO `news` (`id`, `title`, `slug`, `short_content`, `content`, `category
 -- Структура таблицы `news_category`
 --
 
-CREATE TABLE IF NOT EXISTS `news_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news_category` (
+  `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `news_category`
@@ -72,6 +70,115 @@ INSERT INTO `news_category` (`id`, `title`, `slug`, `description`) VALUES
 (1, 'General', 'general', ''),
 (2, 'Top', 'top', '');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `code` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `availability` int(11) NOT NULL,
+  `brand` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `old_price` float DEFAULT NULL,
+  `is_new` int(11) NOT NULL DEFAULT '0',
+  `is_recommended` int(11) NOT NULL DEFAULT '0',
+  `is_promo` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `slug`, `category_id`, `code`, `price`, `availability`, `brand`, `image`, `description`, `old_price`, `is_new`, `is_recommended`, `is_promo`, `status`) VALUES
+(1, 'Рубашка тестовая 1', 'test-shirt-one', 1, 1001, 10.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'sdkjfndsfj kf dfn skfns fnsf kndjf', 0, 0, 0, 0, 1),
+(2, 'Рубашка тестовая другая', 'test-shirt-two', 1, 1002, 20.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 1, 0, 0, 1),
+(3, 'Футболка тестовая один', 'test-tshirt-one', 2, 2001, 20.25, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 0, 0, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product_category`
+--
+
+CREATE TABLE `product_category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '1',
+  `description` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `product_category`
+--
+
+INSERT INTO `product_category` (`id`, `name`, `slug`, `sort_order`, `status`, `description`) VALUES
+(1, 'Рубашки', 'shirts', 0, 1, ''),
+(2, 'Футболки', 't-shirts', 0, 1, ''),
+(3, 'Джинсы', 'jeans', 0, 1, '');
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `news_category`
+--
+ALTER TABLE `news_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `product_category`
+--
+ALTER TABLE `product_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT для таблицы `news_category`
+--
+ALTER TABLE `news_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT для таблицы `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `product_category`
+--
+ALTER TABLE `product_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
