@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июн 17 2018 г., 00:15
+-- Время создания: Июн 17 2018 г., 13:13
 -- Версия сервера: 10.1.16-MariaDB
 -- Версия PHP: 5.6.24
 
@@ -129,6 +129,29 @@ INSERT INTO `product_category` (`id`, `name`, `slug`, `sort_order`, `status`, `d
 (3, 'Джинсы', 'jeans', 0, 1, ''),
 (4, 'Регланы', 'reglan', 0, 1, 'sdfdf sdfffsf');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `role` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'customer'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`) VALUES
+(1, 'testuser', 'testuser@test.com', '1234567', 'customer'),
+(2, 'dsfdfsf', 'testuser@test.come', 'fdsfdfsdff', 'customer'),
+(3, 'dsfdfsfads', 'testuser2@test.com', '98764321', 'customer');
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -158,6 +181,12 @@ ALTER TABLE `product_category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -181,6 +210,11 @@ ALTER TABLE `product`
 --
 ALTER TABLE `product_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT для таблицы `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
