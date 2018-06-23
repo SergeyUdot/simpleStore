@@ -13,5 +13,14 @@
 <body>
 	<div class="wrap1200">
 		<header class="main-header">
+			<div class="mh-r">
+				<?php if(User::isGuest()) { ?>
+					<a href="/user/login/">Log in</a>
+					<a href="/user/register/">Register</a>
+				<?php } else { ?>
+					<a href="/cabinet/">Account</a>
+					<a href="/user/logout/">Log out</a>
+				<?php } ?>
+			</div>
 			Test site
 		</header>
