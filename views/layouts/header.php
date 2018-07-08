@@ -14,6 +14,7 @@
 	<div class="wrap1200">
 		<header class="main-header">
 			<div class="mh-r">
+				<a href="/cart">Cart (<span id="cart-count"><?php echo Cart::countItems(); ?></span>)</a>
 				<?php if(User::isGuest()) { ?>
 					<a href="/user/login/">Log in</a>
 					<a href="/user/register/">Register</a>

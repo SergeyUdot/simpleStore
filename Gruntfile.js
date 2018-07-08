@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 			dist: {
 				src: [
 					//'template/js/*.js', // Все js в папке template/js
-					'template/js/scr1.js',  // Конкретный файл
+					'template/js/main.js',  // Конкретный файл
 					'template/js/scr2.js'
 				],
 				dest: 'template/js/production.js',
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 		
 		watch: {
 			scripts: {
-				files: ['template/js/scr1.js', 'template/js/scr2.js'],
+				files: ['template/js/main.js', 'template/js/scr2.js'],
 				tasks: ['concat', 'uglify'],
 				options: {
 					spawn: false,

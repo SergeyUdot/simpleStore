@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июн 17 2018 г., 13:13
+-- Время создания: Июл 08 2018 г., 23:15
 -- Версия сервера: 10.1.16-MariaDB
 -- Версия PHP: 5.6.24
 
@@ -99,9 +99,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `slug`, `category_id`, `code`, `price`, `availability`, `brand`, `image`, `description`, `old_price`, `is_new`, `is_recommended`, `is_promo`, `status`) VALUES
-(1, 'Рубашка тестовая 1', 'test-shirt-one', 1, 1001, 10.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'sdkjfndsfj kf dfn skfns fnsf kndjf', 0, 0, 0, 0, 1),
+(1, 'Рубашка тестовая 1', 'test-shirt-one', 1, 1001, 10.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'sdkjfndsfj kf dfn skfns fnsf kndjf', NULL, 0, 0, 0, 1),
 (2, 'Рубашка тестовая другая', 'test-shirt-two', 1, 1002, 20.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 1, 0, 0, 1),
-(3, 'Футболка тестовая один', 'test-tshirt-one', 2, 2001, 20.25, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 0, 0, 0, 1),
+(3, 'Футболка тестовая один', 'test-tshirt-one', 2, 2001, 20.25, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 0, 0, 1, 1),
 (4, 'Футболочка', 'tshirt-two', 2, 2002, 10.95, 100, 'Froot of the Loom', 'https://picsum.photos/150/150?image=0', 'fsdfdsf sdfsd ', NULL, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
@@ -150,7 +150,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`) VALUES
 (1, 'testuser', 'testuser@test.com', '1234567', 'customer'),
 (2, 'dsfdfsf', 'testuser@test.come', 'fdsfdfsdff', 'customer'),
-(3, 'dsfdfsfads', 'testuser2@test.com', '98764321', 'customer');
+(3, 'TestoUser', 'testuser2@test.com', '987654321', 'customer');
 
 --
 -- Индексы сохранённых таблиц

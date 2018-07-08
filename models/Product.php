@@ -115,6 +115,39 @@ class Product
 		return $row['count'];
 	}
 	
+	/**
+	 * Returns products
+	 */
+	public static function getProductsByIds($idsArray)
+	{
+		$products = array();
+		
+		$db = Db::getConnection();
+		
+		$idsString = implode(',', $idsArray);
+		
+		$sql = "SELECT * FROM product WHERE status='1' AND id IN ($idsString)";
+		
+		$result = $db->query($sql);
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+		
+		$i = 0;
+		while($row = $result->fetch()) {
+			$products[$i]['id'] = $row['id'];
+			$products[$i]['code'] = $row['code'];
+			$products[$i]['name'] = $row['name'];
+			$products[$i]['price'] = $row['price'];
+			$products[$i]['slug'] = $row['slug'];
+			$products[$i]['category_id'] = $row['category_id'];
+			
+			$categoryArr = Product::getCategoryNameById($row['category_id']);
+			$products[$i]['category_slug'] = $categoryArr['slug'];
+			$i++;
+		}
+		
+		return $products;
+	}
+	
 	private static function getCategoryNameById($category_id)
 	{
 		$db = Db::getConnection();
