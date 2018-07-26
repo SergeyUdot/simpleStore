@@ -148,6 +148,38 @@ class Product
 		return $products;
 	}
 	
+	/**
+     * Returns an array of recommended products
+     */
+    public static function getRecommendedProducts()
+    {
+        $db = Db::getConnection();
+
+        $productsList = array();
+
+        $result = $db->query('SELECT id, name, slug, price, old_price, image, is_new, is_promo, category_id FROM product '
+                . 'WHERE status = "1" AND is_recommended = "1"'
+                . 'ORDER BY id DESC ');
+
+        $i = 0;
+		while($row = $result->fetch()) {
+			$productsList[$i]['id'] = $row['id'];
+			$productsList[$i]['name'] = $row['name'];
+			$productsList[$i]['slug'] = $row['slug'];
+			$productsList[$i]['price'] = $row['price'];
+			$productsList[$i]['old_price'] = $row['old_price'];
+			$productsList[$i]['image'] = $row['image'];
+			$productsList[$i]['is_new'] = $row['is_new'];
+			$productsList[$i]['is_promo'] = $row['is_promo'];
+			
+			$categoryArr = Product::getCategoryNameById($row['category_id']);
+			$productsList[$i]['category_slug'] = $categoryArr['slug'];
+			$i++;
+		}
+
+        return $productsList;
+    }
+	
 	private static function getCategoryNameById($category_id)
 	{
 		$db = Db::getConnection();

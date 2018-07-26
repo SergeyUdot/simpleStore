@@ -7,6 +7,7 @@
 	<meta charset="utf-8" />
 	<title><?php echo $showMetaTitle; ?></title>
 	
+	<link rel="stylesheet" href="/template/bower_components/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="/template/css/style.css" />
 </head>
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 08 2018 г., 23:15
+-- Время создания: Июл 26 2018 г., 23:14
 -- Версия сервера: 10.1.16-MariaDB
 -- Версия PHP: 5.6.24
 
@@ -132,6 +132,33 @@ INSERT INTO `product_category` (`id`, `name`, `slug`, `sort_order`, `status`, `d
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `product_order`
+--
+
+CREATE TABLE `product_order` (
+  `id` int(11) NOT NULL,
+  `user_name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `user_phone` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `user_comment` text CHARACTER SET utf8 NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `products` text CHARACTER SET utf8 NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `product_order`
+--
+
+INSERT INTO `product_order` (`id`, `user_name`, `user_phone`, `user_comment`, `user_id`, `date`, `products`, `status`) VALUES
+(1, 'gdgdfgfdg', '34243423434324', 'sdffsf', 0, '2018-07-26 20:44:11', '{"1":1,"4":1}', 1),
+(6, 'testuser', '2434324243243', '', 1, '2018-07-26 20:53:38', '{"2":1,"4":4}', 1),
+(7, 'testuser', '23322325235325', '', 1, '2018-07-26 21:09:53', '{"2":-2,"1":-1}', 1),
+(8, 'testuser', '234332443244', 'sfdf', 1, '2018-07-26 21:14:28', '{"4":2,"3":1,"2":2,"1":2}', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user`
 --
 
@@ -181,6 +208,12 @@ ALTER TABLE `product_category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `product_order`
+--
+ALTER TABLE `product_order`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -210,6 +243,11 @@ ALTER TABLE `product`
 --
 ALTER TABLE `product_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT для таблицы `product_order`
+--
+ALTER TABLE `product_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT для таблицы `user`
 --

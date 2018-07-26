@@ -21,6 +21,7 @@
 			<th>Name</th>
 			<th>Price, $</th>
 			<th>Quantity</th>
+			<th>Remove</th>
 		</tr>
 		<?php foreach($products as $product) { ?>
 			<tr>
@@ -32,13 +33,15 @@
 				</td>
 				<td><?php echo $product['price']; ?></td>
 				<td><?php echo $productsInCart[$product['id']]; ?></td>
+				<td class="ta-r"><a href="/cart/delete/<?php echo $product['id']; ?>" class="cart-remove-item"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 			</tr>
 		<?php } ?>
 		<tr>
 			<td colspan="3"><strong>Total price:</strong></td>
-			<td><strong>$ <?php echo $totalPrice; ?></strong></td>
+			<td colspan="2" class="ta-r"><strong>$ <?php echo $totalPrice; ?></strong></td>
 		</tr>
 	</table>
+	<a href="/cart/checkout" class="btn btn-checkout">Place an order</a>
   <?php } else { ?>
 	<p>The cart is empty</p>
   <?php } ?>

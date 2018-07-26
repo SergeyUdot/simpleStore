@@ -28,6 +28,32 @@ class Cart
 		return self::countItems();
 	}
 	
+	public static function deleteProduct($id)
+	{
+		$id = intval($id);
+		
+		// Empty array for products in the cart
+		$productsInCart = array();
+		
+		// if cart has some prod-s
+		if(isset($_SESSION['products'])) {
+			$productsInCart = $_SESSION['products'];
+		}
+		
+		if(array_key_exists($id, $productsInCart)) {
+			// if the product is already in the cart -> decrease quantity
+			if($productsInCart[$id]>1) {
+				$productsInCart[$id]--;
+			} else {
+				unset($productsInCart[$id]);
+			}
+		}
+		
+		$_SESSION['products'] = $productsInCart;
+		
+		return self::countItems();
+	}
+	
 	/**
 	 * Count number of products in the session
 	 * @return int
@@ -65,5 +91,12 @@ class Cart
 		}
 		
 		return $total;
+	}
+	
+	public static function clear()
+	{
+		if(isset($_SESSION['products'])) {
+			unset($_SESSION['products']);
+		}
 	}
 }
