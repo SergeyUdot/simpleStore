@@ -151,7 +151,7 @@ class Product
 	/**
      * Returns an array of recommended products
      */
-    public static function getRecommendedProducts()
+	public static function getRecommendedProducts()
     {
         $db = Db::getConnection();
 

@@ -27,23 +27,23 @@
 			</ul>
 		<?php } ?>
 
-        <p>To make an order, please fill out the form. Our manager will contact you.</p>
+		<p>To make an order, please fill out the form. Our manager will contact you.</p>
 
-        <div class="signup-form">
-            <form action="" method="post">
+		<div class="signup-form">
+			<form action="" method="post">
 
-                <label>Your name:</label>
-                <input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?>" />
+				<label>Your name:</label>
+				<input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?>" />
 
-                <label>Phone number:</label>
-                <input type="text" name="userPhone" placeholder="Phone" value="<?php echo $userPhone; ?>" />
+				<label>Phone number:</label>
+				<input type="text" name="userPhone" placeholder="Phone" value="<?php echo $userPhone; ?>" />
 
-                <label>Comment:</label>
-                <input type="text" name="userComment" placeholder="Сообщение" value="<?php echo $userComment; ?>" />
+				<label>Comment:</label>
+				<input type="text" name="userComment" placeholder="Сообщение" value="<?php echo $userComment; ?>" />
 
 				<button type="submit" name="submit" class="btn btn-default">Checkout</button>
-            </form>
-        </div>
+			</form>
+		</div>
                         
 	<?php } ?>
 	

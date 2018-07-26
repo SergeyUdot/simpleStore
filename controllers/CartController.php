@@ -41,11 +41,11 @@ class CartController
 	
 	public function actionDelete($id)
     {
-        // Delete product from the cart
+		// Delete product from the cart
 		Cart::deleteProduct($id);
 		
-        // Return user to the cart
-        header("Location: /cart/");
+		// Return user to the cart
+		header("Location: /cart/");
     }
 	
 	public function actionAddAjax($id)
@@ -57,7 +57,7 @@ class CartController
 	
 	// checkout the order
 	public function actionCheckout()
-    {
+	{
 		$metaTitle = 'Checkout the order';
 
         // Category list for the left menu
@@ -162,6 +162,6 @@ class CartController
         require_once(ROOT . '/views/cart/checkout.php');
 
         return true;
-    }
+	}
 	
 }
