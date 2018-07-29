@@ -25,7 +25,29 @@
 	<?php } ?>
   </div>
   <?php } ?>
-
+  
+  <div class="c_b"></div>
+  <?php if(!empty($sliderProducts)) { ?>
+  <br/>
+  <div class="recommended">
+	<h3>Recommended products</h3>
+	<?php 
+		foreach ($sliderProducts as $sliderItem) { ?>
+			<div class="product-short">
+				<img src="<?php echo $sliderItem['image']; ?>" alt="<?php echo $sliderItem['name']; ?>" />
+				<h2><a href="/catalog/<?php echo $sliderItem['category_slug']; ?>/<?php echo $sliderItem['slug'].'-'.$sliderItem['id']; ?>" title="<?php echo $sliderItem['name']; ?>"><?php echo $sliderItem['name']; ?></a></h2>
+				<div class="prod-price">$<?php echo $sliderItem['price']; ?></div>
+				<a href="/cart/add/<?php echo $sliderItem['id']; ?>" class="tocart-button" data-id="<?php echo $sliderItem['id']; ?>">To Cart</a>
+				<?php if($sliderItem['is_new']) { ?>
+					<span class="prod-new">NEW!</span>
+				<?php } ?>
+				<?php if($sliderItem['is_promo']) { ?>
+					<span class="prod-promo">Special offer!</span>
+				<?php } ?>
+			</div>
+	<?php } ?>
+  </div>
+  <?php } ?>
 </section>
 <div class="c_b"></div>
 

@@ -32,19 +32,15 @@ class Cart
 	{
 		$id = intval($id);
 		
-		// Empty array for products in the cart
-		$productsInCart = array();
-		
-		// if cart has some prod-s
-		if(isset($_SESSION['products'])) {
-			$productsInCart = $_SESSION['products'];
-		}
+		// Products in the cart
+		$productsInCart = self::getProducts();
 		
 		if(array_key_exists($id, $productsInCart)) {
 			// if the product is already in the cart -> decrease quantity
 			if($productsInCart[$id]>1) {
 				$productsInCart[$id]--;
 			} else {
+				// or delete it 
 				unset($productsInCart[$id]);
 			}
 		}

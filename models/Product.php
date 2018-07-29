@@ -150,6 +150,7 @@ class Product
 	
 	/**
      * Returns an array of recommended products
+	 * @return array <p>Array with products</p>
      */
 	public static function getRecommendedProducts()
     {

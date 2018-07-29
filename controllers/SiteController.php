@@ -5,6 +5,7 @@ class SiteController
 	
 	public function actionIndex() 
 	{
+		// meta title TODO: add more custom meta tags
 		$metaTitle = 'Homepage';
 		
 		$categories = array();
@@ -12,6 +13,10 @@ class SiteController
 		
 		$latestProducts = array();
 		$latestProducts = Product::getLatestProducts(4);
+		
+		// products for slider of recommended
+		$sliderProducts = array();
+		$sliderProducts = Product::getRecommendedProducts();
 		
 		require_once(ROOT.'/views/site/index.php');
 		
