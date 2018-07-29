@@ -166,9 +166,6 @@ pip-log.txt
 .project
 .settings*
 .zfproject.xml
-*.jpg
-*.gif
-*.png
 *.bak*
 *.pdf
 *.gzip

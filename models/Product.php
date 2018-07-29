@@ -181,6 +181,157 @@ class Product
         return $productsList;
     }
 	
+	 /**
+     * Return product list
+     * @return array <p>Array of products</p>
+     */
+    public static function getProductsList()
+    {
+        // db connection
+        $db = Db::getConnection();
+        // Request and return of the results
+        $result = $db->query('SELECT id, name, slug, category_id, price, code FROM product ORDER BY id ASC');
+        $productsList = array();
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $productsList[$i]['id'] = $row['id'];
+            $productsList[$i]['name'] = $row['name'];
+			$productsList[$i]['slug'] = $row['slug'];
+			$productsList[$i]['category_id'] = $row['category_id'];
+            $productsList[$i]['code'] = $row['code'];
+            $productsList[$i]['price'] = $row['price'];
+			
+			$categoryArr = Product::getCategoryNameById($row['category_id']);
+			$productsList[$i]['category_slug'] = $categoryArr['slug'];
+            $i++;
+        }
+        return $productsList;
+    }
+	
+	/**
+     * Removes product with id
+     * @param integer $id <p>id of the product</p>
+     * @return boolean <p>Method result</p>
+     */
+    public static function deleteProductById($id)
+    {
+        // db connection
+        $db = Db::getConnection();
+        // db request
+        $sql = 'DELETE FROM product WHERE id = :id';
+        // result return
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        return $result->execute();
+    }
+	
+	/**
+     * Add new product
+     * @param array $options <p>Array with product data</p>
+     * @return integer <p>id of the db table row</p>
+     */
+    public static function createProduct($options)
+    {
+        // db connection
+        $db = Db::getConnection();
+        // db request
+        $sql = 'INSERT INTO product '
+                . '(name, slug, code, price, category_id, brand, availability,'
+                . 'description, old_price, is_new, is_recommended, is_promo, status)'
+                . 'VALUES '
+                . '(:name, :slug, :code, :price, :category_id, :brand, :availability,'
+                . ':description, :old_price, :is_new, :is_recommended, :is_promo, :status)';
+        // result return
+        $result = $db->prepare($sql);
+        $result->bindParam(':name', $options['name'], PDO::PARAM_STR);
+		$result->bindParam(':slug', $options['slug'], PDO::PARAM_STR);
+        $result->bindParam(':code', $options['code'], PDO::PARAM_STR);
+        $result->bindParam(':price', $options['price'], PDO::PARAM_STR);
+        $result->bindParam(':category_id', $options['category_id'], PDO::PARAM_INT);
+        $result->bindParam(':brand', $options['brand'], PDO::PARAM_STR);
+        $result->bindParam(':availability', $options['availability'], PDO::PARAM_INT);
+        $result->bindParam(':description', $options['description'], PDO::PARAM_STR);
+		$result->bindParam(':old_price', $options['old_price'], PDO::PARAM_STR);
+        $result->bindParam(':is_new', $options['is_new'], PDO::PARAM_INT);
+        $result->bindParam(':is_recommended', $options['is_recommended'], PDO::PARAM_INT);
+		$result->bindParam(':is_promo', $options['is_promo'], PDO::PARAM_INT);
+        $result->bindParam(':status', $options['status'], PDO::PARAM_INT);
+        if ($result->execute()) {
+            // if request is successful, return id of the added row
+            return $db->lastInsertId();
+        }
+        // or return 0
+        return 0;
+    }
+	
+	/**
+     * Edit product by some id
+     * @param integer $id <p>id of the product</p>
+     * @param array $options <p>Array with product data</p>
+     * @return boolean <p>Method execution result</p>
+     */
+    public static function updateProductById($id, $options)
+    {
+        // db connection
+        $db = Db::getConnection();
+        // db request
+        $sql = "UPDATE product
+            SET 
+                name = :name, 
+				slug = :slug,
+                code = :code, 
+                price = :price, 
+                category_id = :category_id, 
+                brand = :brand, 
+                availability = :availability, 
+                description = :description,
+				old_price = :old_price, 				
+                is_new = :is_new, 
+                is_recommended = :is_recommended, 
+				is_promo = :is_promo,
+                status = :status
+            WHERE id = :id";
+        // result get and return
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':name', $options['name'], PDO::PARAM_STR);
+		$result->bindParam(':slug', $options['slug'], PDO::PARAM_STR);
+        $result->bindParam(':code', $options['code'], PDO::PARAM_STR);
+        $result->bindParam(':price', $options['price'], PDO::PARAM_STR);
+        $result->bindParam(':category_id', $options['category_id'], PDO::PARAM_INT);
+        $result->bindParam(':brand', $options['brand'], PDO::PARAM_STR);
+        $result->bindParam(':availability', $options['availability'], PDO::PARAM_INT);
+        $result->bindParam(':description', $options['description'], PDO::PARAM_STR);
+		$result->bindParam(':old_price', $options['old_price'], PDO::PARAM_STR);
+        $result->bindParam(':is_new', $options['is_new'], PDO::PARAM_INT);
+        $result->bindParam(':is_recommended', $options['is_recommended'], PDO::PARAM_INT);
+		$result->bindParam(':is_promo', $options['is_promo'], PDO::PARAM_INT);
+        $result->bindParam(':status', $options['status'], PDO::PARAM_INT);
+        return $result->execute();
+    }
+	
+	/**
+     * Returns path to the product image
+     * @param integer $id
+     * @return string <p>Path to the image</p>
+     */
+    public static function getImage($id)
+    {
+        // Default empty image name
+        $noImage = 'no-image.png';
+        // Path to the product image folder
+        $path = '/upload/images/products/';
+        // Path to product image
+        $pathToProductImage = $path . $id . '.jpg';
+        if (file_exists($_SERVER['DOCUMENT_ROOT'].$pathToProductImage)) {
+            // If image exists
+            // return path to image
+            return $pathToProductImage;
+        }
+        // else - return path to the default image
+        return $path . $noImage;
+    }
+	
 	private static function getCategoryNameById($category_id)
 	{
 		$db = Db::getConnection();

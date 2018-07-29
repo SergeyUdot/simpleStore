@@ -15,7 +15,7 @@
 			if(isset($product['id'])) {
   ?> 
 		<div class="product-short">
-			<img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" />
+			<img src="<?php echo !empty($product['image']) ? $product['image'] : Product::getImage($product['id']); ?>" alt="<?php echo $product['name']; ?>" />
 			<h2><a href="/catalog/<?php echo $product['category_slug']; ?>/<?php echo $product['slug'].'-'.$product['id']; ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
 			<div class="prod-price">$<?php echo $product['price']; ?></div>
 			<a href="/cart/add/<?php echo $product['id']; ?>" class="tocart-button" data-id="<?php echo $product['id']; ?>">To Cart</a>

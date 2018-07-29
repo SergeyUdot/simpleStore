@@ -59,4 +59,13 @@ class SiteController
 		
 		return true;
 	}
+	
+	public function actionAbout() 
+	{
+		$metaTitle = 'About us';
+		
+		require_once(ROOT . '/views/site/about.php');
+		
+		return true;
+	}
 }
