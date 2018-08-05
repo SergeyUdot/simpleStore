@@ -36,7 +36,7 @@
 				<input type="text" name="userName" placeholder="Name" value="<?php echo $userName; ?>" />
 
 				<label>Phone number:</label>
-				<input type="text" name="userPhone" placeholder="Phone" value="<?php echo $userPhone; ?>" />
+				<input type="text" name="userPhone" placeholder="Phone" value="<?php echo $userPhone; ?>" maxlength="17" />
 
 				<label>Comment:</label>
 				<input type="text" name="userComment" placeholder="Сообщение" value="<?php echo $userComment; ?>" />

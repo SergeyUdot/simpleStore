@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 26 2018 г., 23:14
+-- Время создания: Авг 05 2018 г., 16:35
 -- Версия сервера: 10.1.16-MariaDB
 -- Версия PHP: 5.6.24
 
@@ -100,9 +100,10 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `name`, `slug`, `category_id`, `code`, `price`, `availability`, `brand`, `image`, `description`, `old_price`, `is_new`, `is_recommended`, `is_promo`, `status`) VALUES
 (1, 'Рубашка тестовая 1', 'test-shirt-one', 1, 1001, 10.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'sdkjfndsfj kf dfn skfns fnsf kndjf', NULL, 0, 0, 0, 1),
-(2, 'Рубашка тестовая другая', 'test-shirt-two', 1, 1002, 20.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 1, 0, 0, 1),
+(2, 'Рубашка тестовая другая', 'test-shirt-two', 1, 1002, 20.15, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 1, 1, 0, 1),
 (3, 'Футболка тестовая один', 'test-tshirt-one', 2, 2001, 20.25, 100, 'Armiane', 'http://via.placeholder.com/150x150', 'dfsfdfs sdf ', NULL, 0, 0, 1, 1),
-(4, 'Футболочка', 'tshirt-two', 2, 2002, 10.95, 100, 'Froot of the Loom', 'https://picsum.photos/150/150?image=0', 'fsdfdsf sdfsd ', NULL, 0, 0, 0, 1);
+(4, 'Футболочка', 'tshirt-two', 2, 2002, 10.95, 100, 'Froot of the Loom', 'https://picsum.photos/150/150?image=0', 'fsdfdsf sdfsd ', NULL, 0, 1, 0, 1),
+(5, 'Some test shirt', 'some-test-shirt', 1, 1003, 20, 1, 'Collins', '', 'Yo! description text', 24, 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,8 @@ INSERT INTO `product_category` (`id`, `name`, `slug`, `sort_order`, `status`, `d
 (1, 'Рубашки', 'shirts', 0, 1, ''),
 (2, 'Футболки', 't-shirts', 0, 1, ''),
 (3, 'Джинсы', 'jeans', 0, 1, ''),
-(4, 'Регланы', 'reglan', 0, 1, 'sdfdf sdfffsf');
+(4, 'Регланы', 'reglan', 0, 1, 'sdfdf sdfffsf'),
+(5, 'Брюки', 'trousers', 0, 1, 'some test description 1');
 
 -- --------------------------------------------------------
 
@@ -151,10 +153,11 @@ CREATE TABLE `product_order` (
 --
 
 INSERT INTO `product_order` (`id`, `user_name`, `user_phone`, `user_comment`, `user_id`, `date`, `products`, `status`) VALUES
-(1, 'gdgdfgfdg', '34243423434324', 'sdffsf', 0, '2018-07-26 20:44:11', '{"1":1,"4":1}', 1),
-(6, 'testuser', '2434324243243', '', 1, '2018-07-26 20:53:38', '{"2":1,"4":4}', 1),
+(1, 'gdgdfgfdg', '34243423434324', 'sdffsf', 0, '2018-07-26 20:44:11', '{"1":1,"4":1}', 3),
+(6, 'testuser', '2434324243243', '', 1, '2018-07-26 20:53:38', '{"2":1,"4":4}', 2),
 (7, 'testuser', '23322325235325', '', 1, '2018-07-26 21:09:53', '{"2":-2,"1":-1}', 1),
-(8, 'testuser', '234332443244', 'sfdf', 1, '2018-07-26 21:14:28', '{"4":2,"3":1,"2":2,"1":2}', 1);
+(8, 'testuser', '234332443244', 'sfdf', 1, '2018-07-26 21:14:28', '{"4":2,"3":1,"2":2,"1":2}', 1),
+(9, 'admin', '09953454543', 'some comment', 4, '2018-08-05 14:31:13', '{"5":2,"2":1}', 1);
 
 -- --------------------------------------------------------
 
@@ -177,7 +180,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`) VALUES
 (1, 'testuser', 'testuser@test.com', '1234567', 'customer'),
 (2, 'dsfdfsf', 'testuser@test.come', 'fdsfdfsdff', 'customer'),
-(3, 'TestoUser', 'testuser2@test.com', '987654321', 'customer');
+(3, 'TestoUser', 'testuser2@test.com', '987654321', 'customer'),
+(4, 'admin', 'graywolf@meta.ua', '123456789', 'admin');
 
 --
 -- Индексы сохранённых таблиц
@@ -237,22 +241,22 @@ ALTER TABLE `news_category`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `product_order`
 --
 ALTER TABLE `product_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

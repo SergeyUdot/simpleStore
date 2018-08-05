@@ -41,7 +41,7 @@
 			<td colspan="2" class="ta-r"><strong>$ <?php echo $totalPrice; ?></strong></td>
 		</tr>
 	</table>
-	<a href="/cart/checkout" class="btn btn-checkout">Place an order</a>
+	<a href="/cart/checkout" class="btn btn-default btn-checkout"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Place an order</a>
   <?php } else { ?>
 	<p>The cart is empty</p>
   <?php } ?>

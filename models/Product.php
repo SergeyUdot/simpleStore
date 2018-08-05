@@ -209,6 +209,40 @@ class Product
     }
 	
 	/**
+     * Returns a list of products with specified indentifiers
+     * @param array $idsArray <p>Array of id's</p>
+     * @return array <p>Array with product list</p>
+     */
+    public static function getProdustsByIds($idsArray)
+    {
+        // db connection
+        $db = Db::getConnection();
+        // Turn array into string for the request
+        $idsString = implode(',', $idsArray);
+        // db request
+        $sql = "SELECT * FROM product WHERE status='1' AND id IN ($idsString)";
+        $result = $db->query($sql);
+        // set result data as array
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        // get and return results
+        $i = 0;
+        $products = array();
+        while ($row = $result->fetch()) {
+            $products[$i]['id'] = $row['id'];
+			$products[$i]['slug'] = $row['slug'];
+            $products[$i]['code'] = $row['code'];
+            $products[$i]['name'] = $row['name'];
+            $products[$i]['price'] = $row['price'];
+			$products[$i]['category_id'] = $row['category_id'];
+			
+			$categoryArr = Product::getCategoryNameById($row['category_id']);
+			$products[$i]['category_slug'] = $categoryArr['slug'];
+            $i++;
+        }
+        return $products;
+    }
+	
+	/**
      * Removes product with id
      * @param integer $id <p>id of the product</p>
      * @return boolean <p>Method result</p>
