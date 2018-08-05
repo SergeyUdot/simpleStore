@@ -8,6 +8,18 @@
 	
 	<h3>Hello, <?php echo $user['name']; ?>!</h3>
 	
+	<table class="cart-table">
+	  <tr>
+	    <th colspan="2">Your personal data</th>
+	  </tr>
+	  <tr>
+		<td>Name:</td><td><?php echo $user['name']; ?></td>
+	  </tr>
+	  <tr>
+		<td>E-mail:</td><td><?php echo $user['email']; ?></td>
+	  </tr>
+	</table>
+	
 	<ul class="account-menu">
 		<li><a href="/cabinet/edit/">Edit your data</a></li>
 		<li><a href="/cabinet/history/">Purchase history</a></li>
