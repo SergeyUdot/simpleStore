@@ -21,6 +21,8 @@
 				<input type="text" name="name" placeholder="Name" value="<?php echo $name; ?>" />
 				<input type="email" name="email" placeholder="E-mail" value="<?php echo $email; ?>" />
 				<input type="password" name="password" placeholder="Password" value="<?php echo $password; ?>" />
+				<input type="text" name="phone" placeholder="Phone number" value="<?php echo $phone; ?>" />
+				<input type="text" name="address" placeholder="Address" value="<?php echo $address; ?>" />
 				<button type="submit" name="submit" class="btn btn-default">Submit</button>
 			</form>
 		</div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 05 2018 г., 16:35
+-- Время создания: Авг 12 2018 г., 18:11
 -- Версия сервера: 10.1.16-MariaDB
 -- Версия PHP: 5.6.24
 
@@ -170,6 +170,8 @@ CREATE TABLE `user` (
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8 NOT NULL,
   `role` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'customer'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -177,11 +179,12 @@ CREATE TABLE `user` (
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`) VALUES
-(1, 'testuser', 'testuser@test.com', '1234567', 'customer'),
-(2, 'dsfdfsf', 'testuser@test.come', 'fdsfdfsdff', 'customer'),
-(3, 'TestoUser', 'testuser2@test.com', '987654321', 'customer'),
-(4, 'admin', 'graywolf@meta.ua', '123456789', 'admin');
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `phone`, `address`, `role`) VALUES
+(1, 'testuser', 'testuser@test.com', '1234567', '5345453454', 'Какой-то тестовый адрес', 'customer'),
+(2, 'dsfdfsf', 'testuser@test.come', 'fdsfdfsdff', '5435454354', 'Киев, ул. йойойоййо, 2, кв.85', 'customer'),
+(3, 'TestoUser', 'testuser2@test.com', '987654321', '86768678876', '', 'customer'),
+(4, 'admin', 'graywolf@meta.ua', '123456789', '474574889', 'г. Какой-то, ул. Какая-то, 3, кв. 35', 'admin'),
+(5, 'OneMore User', 'onemore@test.com', '12345678', '423424324', 'Test address, 33', 'customer');
 
 --
 -- Индексы сохранённых таблиц
@@ -251,12 +254,12 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT для таблицы `product_order`
 --
 ALTER TABLE `product_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

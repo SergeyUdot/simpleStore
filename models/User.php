@@ -2,17 +2,19 @@
 
 class User
 {
-	public static function register($name, $email, $password)
+	public static function register($name, $email, $phone, $address, $password)
 	{
 		$db = Db::getConnection();
 		
-		$sql = 'INSERT INTO user (name, email, password) '
-		     . 'VALUES (:name, :email, :password)';
+		$sql = 'INSERT INTO user (name, email, phone, address, password) '
+		     . 'VALUES (:name, :email, :phone, :address, :password)';
 			 
 		$result = $db->prepare($sql);
 		$result->bindParam(':name', $name, PDO::PARAM_STR);
 		$result->bindParam(':email', $email, PDO::PARAM_STR);
 		$result->bindParam(':password', $password, PDO::PARAM_STR);
+		$result->bindParam(':phone', $phone, PDO::PARAM_STR);
+		$result->bindParam(':address', $address, PDO::PARAM_STR);
 		
 		return $result->execute();
 	}
@@ -22,16 +24,18 @@ class User
 	 * @param string $name
 	 * @param string $password
 	 */
-	public static function edit($id, $name, $email, $password)
+	public static function edit($id, $name, $email, $phone, $address, $password)
 	{
 		$db = Db::getConnection();
 		
-		$sql = 'UPDATE user SET name = :name, email = :email, password = :password WHERE id = :id';
+		$sql = 'UPDATE user SET name = :name, email = :email, phone = :phone, address = :address, password = :password WHERE id = :id';
 		
 		$result = $db->prepare($sql);
 		$result->bindParam(':id', $id, PDO::PARAM_INT);
 		$result->bindParam(':name', $name, PDO::PARAM_STR);
 		$result->bindParam(':email', $email, PDO::PARAM_STR);
+		$result->bindParam(':phone', $phone, PDO::PARAM_STR);
+		$result->bindParam(':address', $address, PDO::PARAM_STR);
 		$result->bindParam(':password', $password, PDO::PARAM_STR);
 		
 		return $result->execute();

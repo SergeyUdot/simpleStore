@@ -18,6 +18,12 @@
 	  <tr>
 		<td>E-mail:</td><td><?php echo $user['email']; ?></td>
 	  </tr>
+	  <tr>
+		<td>Phone number:</td><td><?php echo $user['phone']; ?></td>
+	  </tr>
+	  <tr>
+		<td>Address:</td><td><?php echo $user['address']; ?></td>
+	  </tr>
 	</table>
 	
 	<ul class="account-menu">

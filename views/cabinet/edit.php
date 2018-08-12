@@ -31,6 +31,10 @@
 				<input type="text" name="email" placeholder="E-mail" value="<?php echo $email; ?>" />
 				<label>Password:</label>
 				<input type="password" name="password" placeholder="Password" value="<?php echo $password; ?>" />
+				<label>Phone:</label>
+				<input type="text" name="phone" placeholder="Phone number" value="<?php echo $phone; ?>" />
+				<label>Address:</label>
+				<input type="text" name="address" placeholder="Address" value="<?php echo $address; ?>" />
 				<button type="submit" name="submit" class="btn btn-default">Save</button>
 			</form>
 		</div>

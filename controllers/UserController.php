@@ -10,12 +10,16 @@ class UserController
 		$name = '';
 		$email = '';
 		$password = '';
+		$phone = '';
+		$address = '';
 		$result = false;
 		
 		if(isset($_POST['submit'])) {
 			$name = $_POST['name'];
 			$email = $_POST['email'];
 			$password = $_POST['password'];
+			$phone = $_POST['phone'];
+			$address = $_POST['address'];
 			
 			$errors = false;
 			
@@ -34,7 +38,7 @@ class UserController
 			
 			if($errors == false) {
 				// Save User
-				$result = User::register($name, $email, $password);
+				$result = User::register($name, $email, $phone, $address, $password);
 			}
 		}
 		

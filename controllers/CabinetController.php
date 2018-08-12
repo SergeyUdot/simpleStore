@@ -26,6 +26,8 @@ class CabinetController
 		
 		$name = $user['name'];
 		$email = $user['email'];
+		$phone = $user['phone'];
+		$address = $user['address'];
 		$password = $user['password'];
 		
 		$result = false;
@@ -33,6 +35,8 @@ class CabinetController
 		if(isset($_POST['submit'])) {
 			$name = $_POST['name'];
 			$email = $_POST['email'];
+			$phone = $_POST['phone'];
+			$address = $_POST['address'];
 			$password = $_POST['password'];
 			
 			$errors = false;
@@ -52,7 +56,7 @@ class CabinetController
 			
 			if($errors == false) {
 				// Edit User
-				$result = User::edit($userId, $name, $email, $password);
+				$result = User::edit($userId, $name, $email, $phone, $address, $password);
 			}
 		}
 		
