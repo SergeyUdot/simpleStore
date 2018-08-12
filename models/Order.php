@@ -10,18 +10,19 @@ class Order
      * @param type $password
      * @return type
      */
-    public static function save($userName, $userPhone, $userComment, $userId, $products)
+    public static function save($userName, $userPhone, $userEmail, $userComment, $userId, $products)
     {
         $products = json_encode($products);
 
         $db = Db::getConnection();
 
-        $sql = 'INSERT INTO product_order (user_name, user_phone, user_comment, user_id, products) '
-                . 'VALUES (:user_name, :user_phone, :user_comment, :user_id, :products)';
+        $sql = 'INSERT INTO product_order (user_name, user_phone, user_email, user_comment, user_id, products) '
+                . 'VALUES (:user_name, :user_phone, :user_email, :user_comment, :user_id, :products)';
 
         $result = $db->prepare($sql);
         $result->bindParam(':user_name', $userName, PDO::PARAM_STR);
         $result->bindParam(':user_phone', $userPhone, PDO::PARAM_STR);
+		$result->bindParam(':user_email', $userEmail, PDO::PARAM_STR);
         $result->bindParam(':user_comment', $userComment, PDO::PARAM_STR);
         $result->bindParam(':user_id', $userId, PDO::PARAM_STR);
         $result->bindParam(':products', $products, PDO::PARAM_STR);
@@ -146,6 +147,31 @@ class Order
         $result->bindParam(':date', $date, PDO::PARAM_STR);
         $result->bindParam(':status', $status, PDO::PARAM_INT);
         return $result->execute();
+    }
+	
+	// Get orders of the user
+	public static function getOrdersByUser($userId)
+    {
+        // db connection
+        $db = Db::getConnection();
+        // db request text
+        $sql = 'SELECT * FROM product_order WHERE user_id = :user_id ORDER BY id ASC LIMIT 25';
+		$result = $db->prepare($sql);
+        $result->bindParam(':user_id', $userId, PDO::PARAM_INT);
+		$result->setFetchMode(PDO::FETCH_ASSOC);
+		$result->execute();
+        $ordersList = array();
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $ordersList[$i]['id'] = $row['id'];
+            $ordersList[$i]['user_name'] = $row['user_name'];
+            $ordersList[$i]['user_phone'] = $row['user_phone'];
+            $ordersList[$i]['date'] = $row['date'];
+            $ordersList[$i]['status'] = $row['status'];
+			$ordersList[$i]['products'] = $row['products'];
+            $i++;
+        }
+        return $ordersList;
     }
 
 }

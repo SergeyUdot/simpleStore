@@ -28,6 +28,10 @@
                     <td>User Phone</td>
                     <td><?php echo $order['user_phone']; ?></td>
                 </tr>
+				<tr>
+                    <td>User E-mail</td>
+                    <td><?php echo $order['user_email']; ?></td>
+                </tr>
                 <tr>
                     <td>User Comment</td>
                     <td><?php echo $order['user_comment']; ?></td>

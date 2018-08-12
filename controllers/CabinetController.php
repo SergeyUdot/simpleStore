@@ -64,4 +64,34 @@ class CabinetController
 		
 		return true;
 	}
+	
+	/**
+	 * Purchase history for user account
+	 * @return bool
+	 */
+	public function actionHistory()
+	{
+		$metaTitle = 'Your purchase history';
+		
+		$userId = User::checkLogged();
+		
+		$user = User::getUserById($userId);
+		
+		$ordersList = Order::getOrdersByUser($userId);
+		
+		$products = array();
+		if(count($ordersList)>0) {
+			foreach($ordersList as $order) {
+				$productsQuantity = json_decode($order['products'], true);
+				// Get array of product id
+				$productsIds = array_keys($productsQuantity);
+				$products[$order['id']] = Product::getProdustsByIds($productsIds);
+				$productsQuantityArr[$order['id']] = $productsQuantity;
+			}
+		}	
+		
+		require_once(ROOT . '/views/cabinet/history.php');
+		
+		return true;
+	}
 }

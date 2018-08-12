@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 12 2018 г., 18:11
+-- Время создания: Авг 13 2018 г., 00:37
 -- Версия сервера: 10.1.16-MariaDB
 -- Версия PHP: 5.6.24
 
@@ -141,6 +141,7 @@ CREATE TABLE `product_order` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `user_phone` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `user_email` varchar(255) CHARACTER SET utf8 NOT NULL,
   `user_comment` text CHARACTER SET utf8 NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -152,12 +153,13 @@ CREATE TABLE `product_order` (
 -- Дамп данных таблицы `product_order`
 --
 
-INSERT INTO `product_order` (`id`, `user_name`, `user_phone`, `user_comment`, `user_id`, `date`, `products`, `status`) VALUES
-(1, 'gdgdfgfdg', '34243423434324', 'sdffsf', 0, '2018-07-26 20:44:11', '{"1":1,"4":1}', 3),
-(6, 'testuser', '2434324243243', '', 1, '2018-07-26 20:53:38', '{"2":1,"4":4}', 2),
-(7, 'testuser', '23322325235325', '', 1, '2018-07-26 21:09:53', '{"2":-2,"1":-1}', 1),
-(8, 'testuser', '234332443244', 'sfdf', 1, '2018-07-26 21:14:28', '{"4":2,"3":1,"2":2,"1":2}', 1),
-(9, 'admin', '09953454543', 'some comment', 4, '2018-08-05 14:31:13', '{"5":2,"2":1}', 1);
+INSERT INTO `product_order` (`id`, `user_name`, `user_phone`, `user_email`, `user_comment`, `user_id`, `date`, `products`, `status`) VALUES
+(1, 'gdgdfgfdg', '34243423434324', 'dsdfd@sdfsdf.com', 'sdffsf', 0, '2018-07-26 20:44:11', '{"1":1,"4":1}', 3),
+(6, 'testuser', '2434324243243', 'testuser@test.com', '', 1, '2018-07-26 20:53:38', '{"2":1,"4":4}', 2),
+(7, 'testuser', '23322325235325', 'testuser@test.com', '', 1, '2018-07-26 21:09:53', '{"2":2,"1":1}', 1),
+(8, 'testuser', '234332443244', 'testuser@test.com', 'sfdf', 1, '2018-07-26 21:14:28', '{"4":2,"3":1,"2":2,"1":2}', 1),
+(9, 'admin', '09953454543', 'graywolf@meta.ua', 'some comment', 4, '2018-08-05 14:31:13', '{"5":2,"2":1}', 1),
+(10, 'testuser', '5345453454', 'testuser@test.com', 'new test order', 1, '2018-08-12 22:27:56', '{"4":1}', 1);
 
 -- --------------------------------------------------------
 
@@ -254,7 +256,7 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT для таблицы `product_order`
 --
 ALTER TABLE `product_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `user`
 --

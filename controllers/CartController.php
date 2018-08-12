@@ -75,6 +75,7 @@ class CartController
             // Read form data
             $userName = $_POST['userName'];
             $userPhone = $_POST['userPhone'];
+			$userEmail = $_POST['userEmail'];
             $userComment = $_POST['userComment'];
 
             // Validation
@@ -83,6 +84,8 @@ class CartController
                 $errors[] = 'Wrong name';
             if (!User::checkPhone($userPhone))
                 $errors[] = 'Wrong phone';
+			if (!User::checkEmail($userEmail))
+                $errors[] = 'Wrong e-mail';
 
             // is form filled correctly?
             if ($errors == false) {
@@ -97,7 +100,7 @@ class CartController
                 }
 
                 // Save to the db
-                $result = Order::save($userName, $userPhone, $userComment, $userId, $productsInCart);
+                $result = Order::save($userName, $userPhone, $userEmail, $userComment, $userId, $productsInCart);
 
                 if ($result) {
                     // Mail to admin about new order               
@@ -142,6 +145,7 @@ class CartController
 
                 $userName = false;
                 $userPhone = false;
+				$userEmail = false;
                 $userComment = false;
 
                 // is user logged in?
@@ -155,6 +159,8 @@ class CartController
                     $user = User::getUserById($userId);
                     // fill in the form
                     $userName = $user['name'];
+					$userPhone = $user['phone'];
+					$userEmail = $user['email'];
                 }
             }
         }

@@ -37,6 +37,9 @@
 
 				<label>Phone number:</label>
 				<input type="text" name="userPhone" placeholder="Phone" value="<?php echo $userPhone; ?>" maxlength="17" />
+				
+				<label>Your E-mail:</label>
+				<input type="email" name="userEmail" placeholder="E-mail" value="<?php echo $userEmail; ?>" />
 
 				<label>Comment:</label>
 				<input type="text" name="userComment" placeholder="Сообщение" value="<?php echo $userComment; ?>" />
